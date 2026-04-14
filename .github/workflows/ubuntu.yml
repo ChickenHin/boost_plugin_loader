@@ -1,4 +1,4 @@
-name: Ubuntu [Focal, Jammy, Noble]
+name: Ubuntu [Jammy, Noble, Resolute]
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        distro: [focal, jammy, noble]
+        distro: [jammy, noble, resolute]
     container:
       image: ubuntu:${{ matrix.distro }}
       env:
@@ -42,7 +42,7 @@ jobs:
           echo "BUILD_TYPE=Release" >> $GITHUB_ENV
 
       - name: Build and Tests
-        uses: tesseract-robotics/colcon-action@v13
+        uses: tesseract-robotics/colcon-action@v14
         with:
           before-script: 'apt install -y -qq clang-tidy lcov'
           ccache-prefix: ${{ matrix.distro }}
