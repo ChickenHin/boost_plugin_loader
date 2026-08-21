@@ -2,6 +2,14 @@
 Changelog for package boost_plugin_loader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add BUILD_EXAMPLES option
+* Dropped CI support for Ubuntu 20.04; added CI support for Ubuntu 26.04 (`#40 <https://github.com/tesseract-robotics/boost_plugin_loader/issues/40>`_)
+  * Dropped CI support for Ubuntu 20.04; added CI support for Ubuntu 26.04
+  * Bump colcon-action to v14
+* Contributors: Michael Ripperger, Rick van Essen
+
 0.4.3 (2025-11-03)
 ------------------
 * Fixed finding multiple libraries during library loading
