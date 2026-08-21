@@ -2,8 +2,8 @@
 Changelog for package boost_plugin_loader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.4 (2026-08-21)
+------------------
 * Add BUILD_EXAMPLES option
 * Dropped CI support for Ubuntu 20.04; added CI support for Ubuntu 26.04 (`#40 <https://github.com/tesseract-robotics/boost_plugin_loader/issues/40>`_)
   * Dropped CI support for Ubuntu 20.04; added CI support for Ubuntu 26.04
