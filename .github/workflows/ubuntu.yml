@@ -1,17 +1,17 @@
 name: Ubuntu [Jammy, Noble, Resolute]
 
 on:
-  push:
-    branches:
-      - main
-      - 'dev**'
-  pull_request:
-  schedule:
-    - cron: '0 5 * * *'
+  # push:
+  #   branches:
+  #     - main
+  #     - 'dev**'
+  # pull_request:
+  # schedule:
+  #   - cron: '0 5 * * *'
   workflow_dispatch:
-  release:
-    types:
-      - released
+  # release:
+  #   types:
+  #     - released
 
 env:
   BUILD_TYPE: Debug
@@ -28,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        distro: [jammy, noble, resolute]
+        distro: [jammy]
     container:
       image: ubuntu:${{ matrix.distro }}
       env:
@@ -64,23 +64,23 @@ jobs:
           make -C ./build/boost_plugin_loader ccov-all
           bash <(curl -s https://codecov.io/bash) -t ec6ee46b-1f52-482c-82ef-1aaabc673f8d -s ./build/boost_plugin_loader -f *all-merged.info
 
-      - name: Package
-        if: ${{ github.event_name == 'release' && github.event.action == 'released' }}
-        working-directory: target_ws/build/boost_plugin_loader
-        run: |
-          mkdir $GITHUB_WORKSPACE/artifacts
-          cpack --config CPackConfig.cmake
-          cp ./*.deb $GITHUB_WORKSPACE/artifacts
-          cp ./*.tar.xz $GITHUB_WORKSPACE/artifacts
+      # - name: Package
+      #   if: ${{ github.event_name == 'release' && github.event.action == 'released' }}
+      #   working-directory: target_ws/build/boost_plugin_loader
+      #   run: |
+      #     mkdir $GITHUB_WORKSPACE/artifacts
+      #     cpack --config CPackConfig.cmake
+      #     cp ./*.deb $GITHUB_WORKSPACE/artifacts
+      #     cp ./*.tar.xz $GITHUB_WORKSPACE/artifacts
 
-      - uses: actions/upload-artifact@v4
-        if: ${{ github.event_name == 'release' && github.event.action == 'released' }}
-        with:
-          name: debian_package_${{ matrix.distro }}
-          path: ${{ github.workspace }}/artifacts/*.deb
+      # - uses: actions/upload-artifact@v4
+      #   if: ${{ github.event_name == 'release' && github.event.action == 'released' }}
+      #   with:
+      #     name: debian_package_${{ matrix.distro }}
+      #     path: ${{ github.workspace }}/artifacts/*.deb
 
-      - uses: actions/upload-artifact@v4
-        if: ${{ github.event_name == 'release' && github.event.action == 'released' }}
-        with:
-          name: archive_package_${{ matrix.distro }}
-          path: ${{ github.workspace }}/artifacts/*.tar.xz
+      # - uses: actions/upload-artifact@v4
+      #   if: ${{ github.event_name == 'release' && github.event.action == 'released' }}
+      #   with:
+      #     name: archive_package_${{ matrix.distro }}
+      #     path: ${{ github.workspace }}/artifacts/*.tar.xz
