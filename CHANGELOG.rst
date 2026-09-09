@@ -2,8 +2,8 @@
 Changelog for package boost_plugin_loader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.4.5 (2026-09-09)
+------------------
 * Add plugin library lifetime tokens
   Add an explicit API for eagerly loading configured plugin libraries and
   returning independent RAII lifetime tokens.
